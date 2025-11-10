@@ -1,4 +1,5 @@
-const { authJwt, verifyRole } = require('../middleware');
+const { verifyToken } = require('../middleware/authJwt');  // Fixed: Specific file
+const { isAdmin } = require('../middleware/verifyRole');  // Fixed: Specific file
 const controller = require('../controllers/user.controller.js');
 
 module.exports = function (app) {
@@ -10,13 +11,13 @@ module.exports = function (app) {
     next();
   });
 
-  // Get current user
-  app.get('/api/user/profile', [authJwt.verifyToken], controller.getCurrentUser);
+  // Get current user (protected)
+  app.get('/api/user/profile', [verifyToken], controller.getCurrentUser);
 
-  // Admin routes
-  app.get('/api/users', [authJwt.verifyToken, verifyRole.isAdmin], controller.findAll);
-  app.get('/api/users/:id', [authJwt.verifyToken, verifyRole.isAdmin], controller.findOne);
-  app.put('/api/users/:id', [authJwt.verifyToken, verifyRole.isAdmin], controller.update);
-  app.put('/api/users/:id/approve', [authJwt.verifyToken, verifyRole.isAdmin], controller.approve);
-  app.delete('/api/users/:id', [authJwt.verifyToken, verifyRole.isAdmin], controller.delete);
+  // Admin routes (protected + admin role)
+  app.get('/api/users', [verifyToken, isAdmin], controller.findAll);
+  app.get('/api/users/:id', [verifyToken, isAdmin], controller.findOne);
+  app.put('/api/users/:id', [verifyToken, isAdmin], controller.update);
+  app.put('/api/users/:id/approve', [verifyToken, isAdmin], controller.approve);
+  app.delete('/api/users/:id', [verifyToken, isAdmin], controller.delete);
 };

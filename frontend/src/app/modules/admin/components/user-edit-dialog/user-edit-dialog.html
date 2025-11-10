@@ -1,0 +1,40 @@
+<h2 mat-dialog-title>Edit User: {{ data.user.firstname }} {{ data.user.lastname }}</h2>
+<mat-dialog-content>
+  <form [formGroup]="editForm">
+    <mat-form-field appearance="outline">
+      <mat-label>First Name</mat-label>
+      <input matInput formControlName="firstname">
+      <mat-error *ngIf="editForm.get('firstname')?.hasError('required')">Required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Last Name</mat-label>
+      <input matInput formControlName="lastname">
+      <mat-error *ngIf="editForm.get('lastname')?.hasError('required')">Required</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Email</mat-label>
+      <input matInput formControlName="email">
+      <mat-error *ngIf="editForm.get('email')?.hasError('required')">Required</mat-error>
+      <mat-error *ngIf="editForm.get('email')?.hasError('email')">Invalid email</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Phone (10 digits)</mat-label>
+      <input matInput formControlName="phone">
+      <mat-error *ngIf="editForm.get('phone')?.hasError('required')">Required</mat-error>
+      <mat-error *ngIf="editForm.get('phone')?.hasError('pattern')">10 digits only</mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="outline">
+      <mat-label>Status</mat-label>
+      <mat-select formControlName="status">
+        <mat-option value="Awaiting Approval">Awaiting Approval</mat-option>
+        <mat-option value="Active">Active</mat-option>
+      </mat-select>
+      <mat-error *ngIf="editForm.get('status')?.hasError('required')">Required</mat-error>
+    </mat-form-field>
+  </form>
+  <p *ngIf="errorMessage" class="error">{{ errorMessage }}</p>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button (click)="onCancel()">Cancel</button>
+  <button mat-raised-button color="primary" [disabled]="editForm.invalid" (click)="onSave()">Save Changes</button>
+</mat-dialog-actions>

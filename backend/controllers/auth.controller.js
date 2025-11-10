@@ -83,10 +83,14 @@ exports.setPassword = async (req, res) => {
       return res.status(400).send({ message: 'Password must be at least 8 characters with 1 uppercase, 1 lowercase, 1 number, and 1 special character.' });
     }
 
-    await User.update(
-      { password, isFirstLogin: false },
-      { where: { id: req.userId } }
-    );
+    const user = await User.findByPk(req.userId);
+    if (!user) {
+      return res.status(404).send({ message: 'User not found.' });
+    }
+
+    user.password = password;
+    user.isFirstLogin = false;
+    await user.save();
 
     res.send({ message: 'Password set successfully.' });
   } catch (err) {

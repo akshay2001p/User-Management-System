@@ -10,9 +10,9 @@ exports.findAll = async (req, res) => {
 
   if (search) {
     where[Op.or] = [
-      { firstname: { [Op.iLike]: `%${search}%` } },
-      { lastname: { [Op.iLike]: `%${search}%` } },
-      { email: { [Op.iLike]: `%${search}%` } }
+      { firstname: { [Op.like]: `%${search}%` } },
+      { lastname: { [Op.like]: `%${search}%` } },
+      { email: { [Op.like]: `%${search}%` } }
     ];
   }
 

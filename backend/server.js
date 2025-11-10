@@ -1,7 +1,7 @@
+require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const db = require('./models');
-require('dotenv').config();
 
 // Create express app
 const app = express();
@@ -18,31 +18,47 @@ app.use(express.urlencoded({ extended: true }));
 require('./routes/auth.routes')(app);
 require('./routes/user.routes')(app);
 
-// Sync DB
-db.sequelize.sync({ force: false }).then(() => {
-  console.log('Drop and re-sync db.');
-});
-
 // Seed admin if not exists
 const seedAdmin = async () => {
-  const adminEmail = 'admin@example.com';
-  const existingAdmin = await db.user.findOne({ where: { email: adminEmail } });
-  if (!existingAdmin) {
-    await db.user.create({
-      firstname: 'Admin',
-      lastname: 'User',
-      email: adminEmail,
-      phone: '1234567890',
-      password: 'Admin#2021',
-      status: 'Active',
-      role: 'admin',
-      isFirstLogin: false
+  try {
+    const adminEmail = 'admin@example.com';
+    const adminPhone = '1234567890';
+    
+    // Check if admin already exists by email or phone
+    const existingAdmin = await db.user.findOne({ 
+      where: { 
+        [db.Sequelize.Op.or]: [
+          { email: adminEmail },
+          { phone: adminPhone }
+        ]
+      } 
     });
-    console.log('Admin user created.');
+    
+    if (!existingAdmin) {
+      await db.user.create({
+        firstname: 'Admin',
+        lastname: 'User',
+        email: adminEmail,
+        phone: adminPhone,
+        password: 'Admin#2021',
+        status: 'Active',
+        role: 'admin',
+        isFirstLogin: false
+      });
+      console.log('Admin user created.');
+    } else {
+      console.log('Admin user already exists.');
+    }
+  } catch (err) {
+    console.error('Error seeding admin:', err.message);
   }
 };
 
-seedAdmin();
+// Sync DB and then seed
+db.sequelize.sync({ force: false }).then(() => {
+  console.log('Database synchronized.');
+  seedAdmin().catch(err => console.error('Error seeding admin:', err));
+});
 
 // Listen
 const PORT = process.env.PORT || 8080;

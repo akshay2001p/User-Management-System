@@ -1,4 +1,5 @@
-const { verifySignUp } = require('../middleware');
+const { checkDuplicateEmailOrPhone } = require('../middleware/verifySignUp');
+const { verifyToken } = require('../middleware/authJwt');
 const controller = require('../controllers/auth.controller.js');
 
 module.exports = function (app) {
@@ -10,7 +11,7 @@ module.exports = function (app) {
     next();
   });
 
-  app.post('/api/auth/register', [verifySignUp.checkDuplicateEmailOrPhone], controller.register);
+  app.post('/api/auth/register', [checkDuplicateEmailOrPhone], controller.register);
   app.post('/api/auth/login', controller.login);
-  app.post('/api/auth/set-password', controller.setPassword); // Protected by guard
+  app.post('/api/auth/set-password', [verifyToken], controller.setPassword);
 };

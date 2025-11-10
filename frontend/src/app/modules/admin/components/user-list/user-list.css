@@ -1,0 +1,41 @@
+.admin-container {
+  padding: 20px;
+}
+
+.filters {
+  display: flex;
+  gap: 15px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.user-table {
+  width: 100%;
+}
+
+.status-badge {
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.status-badge.Active {
+  background-color: #d4edda;
+  color: #155724;
+}
+
+.status-badge.Awaiting {
+  background-color: #fff3cd;
+  color: #856404;
+}
+
+.no-data {
+  text-align: center;
+  color: gray;
+  font-style: italic;
+}
+
+button[mat-icon-button] {
+  margin-right: 5px;
+}
