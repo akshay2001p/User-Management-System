@@ -1,41 +1,131 @@
 .admin-container {
-  padding: 20px;
+  padding: 32px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.admin-container h2 {
+  font-size: 32px;
+  font-weight: 500;
+  color: #1e3c72;
+  margin-bottom: 32px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
 }
 
 .filters {
   display: flex;
-  gap: 15px;
-  margin-bottom: 20px;
+  gap: 10px;
+  margin-bottom: 32px;
   flex-wrap: wrap;
+  align-items: center;
+  background: white;
+  padding: 24px;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.filters mat-form-field {
+  flex: 1;
+  min-width: 200px;
+}
+
+.filters button {
+  height: 48px;
+  color: white;
+  border-radius: 24px;
 }
 
 .user-table {
   width: 100%;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.user-table th {
+  background-color: #f5f7fa;
+  color: #1e3c72;
+  font-weight: 600;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.user-table td {
+  padding: 16px;
+}
+
+.user-table tr:hover {
+  background-color: #f9fafb;
 }
 
 .status-badge {
-  padding: 4px 8px;
-  border-radius: 4px;
-  font-size: 12px;
-  font-weight: bold;
+  padding: 6px 12px;
+  border-radius: 16px;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: inline-block;
 }
 
 .status-badge.Active {
-  background-color: #d4edda;
-  color: #155724;
+  background-color: #c8e6c9;
+  color: #2e7d32;
 }
 
-.status-badge.Awaiting {
-  background-color: #fff3cd;
-  color: #856404;
+.status-badge.Awaiting,
+.status-badge[class*="Awaiting"] {
+  background-color: #fff9c4;
+  color: #f57f17;
 }
 
 .no-data {
   text-align: center;
-  color: gray;
+  color: #999;
   font-style: italic;
+  padding: 48px;
+  font-size: 16px;
 }
 
 button[mat-icon-button] {
-  margin-right: 5px;
+  margin-right: 8px;
+  transition: transform 0.2s ease;
+}
+
+button[mat-icon-button]:hover {
+  transform: scale(1.1);
+}
+
+button[mat-icon-button].edit-btn {
+  color: #2196f3;
+}
+
+button[mat-icon-button].approve-btn {
+  color: #4caf50;
+}
+
+button[mat-icon-button].delete-btn {
+  color: #f44336;
+}
+
+mat-spinner {
+  margin: 48px auto;
+}
+
+@media (max-width: 768px) {
+  .admin-container {
+    padding: 16px;
+  }
+  
+  .filters {
+    padding: 16px;
+  }
+  
+  .user-table {
+    font-size: 14px;
+  }
 }

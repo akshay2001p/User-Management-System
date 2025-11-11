@@ -16,7 +16,7 @@ export class UserListComponent implements OnInit {
   users: User[] = [];
   searchControl = new FormControl();
   statusFilter = '';
-  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'status', 'actions'];
+  displayedColumns: string[] = ['firstname', 'lastname', 'email', 'phone', 'status', 'actions'];
   loading = true;
 
   constructor(private userService: UserService, public dialog: MatDialog) {}

@@ -1,5 +1,18 @@
-<mat-toolbar color="primary">
-  <span>User Management App</span>
-  <span class="spacer"></span>
-  <button mat-button *ngIf="isLoggedIn" (click)="logout()">Logout</button>
+<mat-toolbar class="app-navbar">
+  <div class="navbar-content">
+    <div class="navbar-brand">
+      <mat-icon class="brand-icon">admin_panel_settings</mat-icon>
+      <span class="brand-text">User Management System</span>
+    </div>
+    
+    <div class="navbar-actions">
+      <button mat-icon-button *ngIf="isLoggedIn" class="user-menu">
+        <mat-icon>account_circle</mat-icon>
+      </button>
+      <button mat-raised-button color="accent" *ngIf="isLoggedIn" (click)="logout()" class="logout-btn">
+        <mat-icon>logout</mat-icon>
+        <span>Logout</span>
+      </button>
+    </div>
+  </div>
 </mat-toolbar>

@@ -1,9 +1,70 @@
-.error {
-  color: red;
-  margin-top: 10px;
+/* Dialog Styling */
+.mat-mdc-dialog-container,
+.mdc-dialog__surface,
+.mat-mdc-dialog-surface {
+  background-color: #ffffff !important;
+  border-radius: 12px !important;
+  padding: 0 !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
+}
+
+.mat-mdc-dialog-container .mdc-dialog__container {
+  background-color: transparent !important;
+}
+
+.cdk-overlay-pane {
+  background-color: transparent !important;
+}
+
+h2[mat-dialog-title] {
+  background: linear-gradient(90deg, #1e3c72 0%, #2a5298 100%) !important;
+  color: white !important;
+  padding: 20px 24px;
+  margin: 0 !important;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+mat-dialog-content {
+  padding: 24px !important;
+  background-color: #ffffff !important;
+  min-width: 400px;
 }
 
 mat-form-field {
   width: 100%;
-  margin-bottom: 10px;
+  margin-bottom: 16px;
+}
+
+.error {
+  color: #f44336;
+  margin-top: 12px;
+  font-weight: 500;
+  background-color: #ffebee;
+  padding: 12px;
+  border-radius: 8px;
+  text-align: center;
+}
+
+mat-dialog-actions {
+  padding: 16px 24px !important;
+  background-color: #f5f7fa;
+  justify-content: flex-end;
+  gap: 12px;
+  border-top: 1px solid #e0e0e0;
+}
+
+mat-dialog-actions button {
+  min-width: 100px;
+}
+
+mat-dialog-actions button[mat-raised-button] {
+  background: white !important;
+  color: white !important;
+  border-radius: 24px;
+  padding: 0 24px;
+}
+
+mat-dialog-actions button[mat-button] {
+  color: #666;
 }

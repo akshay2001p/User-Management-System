@@ -1,4 +1,119 @@
-/* You can add global styles to this file, and also import other style files */
+/* Global Styles */
+* {
+  box-sizing: border-box;
+}
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Roboto', 'Helvetica Neue', sans-serif;
+  background-color: #f5f7fa;
+  color: #333;
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Material Design Overrides */
+.mat-mdc-raised-button.mat-primary {
+  background-color: #1e3c72 !important;
+}
+
+.mat-mdc-raised-button.mat-accent {
+  background-color: #ffd740 !important;
+  color: #1e3c72 !important;
+}
+
+/* Card Styles */
+.mat-mdc-card {
+  border-radius: 8px !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Form Field Styles */
+.mat-mdc-form-field {
+  width: 100%;
+}
+
+/* Common Page Styles */
+.page-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 24px;
+}
+
+.page-title {
+  font-size: 28px;
+  font-weight: 500;
+  color: #1e3c72;
+  margin-bottom: 24px;
+}
+
+/* Center Forms */
+.center-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 144px);
+  padding: 24px;
+}
+
+/* Success and Error Messages */
+.success {
+  color: #4caf50;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+.error {
+  color: #f44336;
+  font-weight: 500;
+  margin-top: 16px;
+}
+
+/* Status Badges */
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 12px;
+  font-size: 12px;
+  font-weight: 500;
+  text-transform: uppercase;
+}
+
+.status-badge.Active {
+  background-color: #c8e6c9;
+  color: #2e7d32;
+}
+
+.status-badge.Awaiting {
+  background-color: #fff9c4;
+  color: #f57f17;
+}
+
+/* Loading Spinner */
+.loading-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 48px;
+}

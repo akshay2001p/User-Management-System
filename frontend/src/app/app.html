@@ -1,2 +1,33 @@
-<app-header></app-header>
-<router-outlet></router-outlet>
+<div class="app-container">
+  <app-header></app-header>
+  
+  <div class="main-layout">
+    <aside class="sidebar" *ngIf="isLoggedIn">
+      <nav class="sidebar-nav">
+        <a routerLink="/user/home" routerLinkActive="active" class="nav-item" *ngIf="userRole === 'user'">
+          <mat-icon>home</mat-icon>
+          <span>Home</span>
+        </a>
+        <a routerLink="/admin/users" routerLinkActive="active" class="nav-item" *ngIf="userRole === 'admin'">
+          <mat-icon>people</mat-icon>
+          <span>User Management</span>
+        </a>
+      </nav>
+    </aside>
+
+    <main class="main-content">
+      <router-outlet></router-outlet>
+    </main>
+  </div>
+
+  <footer class="app-footer" *ngIf="isLoggedIn">
+    <div class="footer-content">
+      <p>&copy; 2025 User Management System. All rights reserved.</p>
+      <p class="footer-links">
+        <a href="#">Privacy Policy</a> | 
+        <a href="#">Terms of Service</a> | 
+        <a href="#">Contact Us</a>
+      </p>
+    </div>
+  </footer>
+</div>

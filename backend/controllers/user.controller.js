@@ -12,7 +12,11 @@ exports.findAll = async (req, res) => {
     where[Op.or] = [
       { firstname: { [Op.like]: `%${search}%` } },
       { lastname: { [Op.like]: `%${search}%` } },
-      { email: { [Op.like]: `%${search}%` } }
+      { email: { [Op.like]: `%${search}%` } },
+      db.Sequelize.where(
+        db.Sequelize.cast(db.Sequelize.col('phone'), 'CHAR'),
+        { [Op.like]: `%${search}%` }
+      )
     ];
   }
 
