@@ -422,7 +422,7 @@ MIT License
 
 ## 👨‍💻 Author
 
-Akshay Pawar ([@akshay2001p](https://github.com/akshay2001p))
+Akshay P([@akshay2001p](https://github.com/akshay2001p))
 
 ---
 
